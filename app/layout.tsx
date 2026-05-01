@@ -37,30 +37,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full max-w-[1928px] mx-auto bg-white text-black flex flex-col">
+      <body className="min-h-full max-w-[1928px] mx-auto bg-white text-black">
         <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <footer className="border-t border-gray-200 px-4 py-4 text-center text-xs text-gray-600">
-          Meet Yusra is powered by{" "}
-          <a
-            href="https://freakinstudio.space"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:opacity-80"
-          >
-            FreakinStudio.Space
-          </a>{" "}
-          &{" "}
-          <a
-            href="https://bhaisazzad.online"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:opacity-80"
-          >
-            BhaiSazzaD.Online
-          </a>
-          , copywrite @ 2026.
-        </footer>
+        {children}
       </body>
     </html>
   );
