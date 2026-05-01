@@ -160,12 +160,12 @@ function Testimonials() {
           ))}
         </div>
         <div className="text-center">
-          <a
-            href="https://example.com"
+          <Link
+            href="/contact"
             className="py-2.5 px-5 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700"
           >
-            Show more...
-          </a>
+            Start a Project
+          </Link>
         </div>
       </div>
     </motion.section>
