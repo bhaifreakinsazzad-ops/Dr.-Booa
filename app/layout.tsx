@@ -3,8 +3,8 @@ import "./globals.css";
 import SiteHeader from "./components/site-header";
 
 export const metadata: Metadata = {
-  title: "Yusra mam-Gogh",
-  description: "Art & Decor consultant portfolio",
+  title: "Meet Yusra",
+  description: "Meet Yusra - Art and decor consultant portfolio",
 };
 
 export default function RootLayout({
