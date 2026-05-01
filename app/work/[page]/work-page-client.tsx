@@ -40,7 +40,7 @@ function OtherWork() {
 }
 
 function WorkDetails({ currentPage }: { currentPage: number }) {
-  const item = workItems.find((workItem) => workItem.id === currentPage);
+  const item = workItems[currentPage];
   if (!item) {
     return null;
   }

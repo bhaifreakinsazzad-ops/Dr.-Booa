@@ -8,7 +8,6 @@ type ContactFormData = {
   email: string;
   phone: string;
   message: string;
-  website: string;
 };
 
 const initialFormData: ContactFormData = {
@@ -16,18 +15,17 @@ const initialFormData: ContactFormData = {
   email: "",
   phone: "",
   message: "",
-  website: "",
 };
 
 export default function ContactPage() {
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [statusMessage, setStatusMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
-    setStatusMessage("");
+    setErrorMessage("");
 
     try {
       const response = await fetch("/api/contact", {
@@ -38,19 +36,16 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       });
 
-      const result = (await response.json()) as { error?: string; message?: string };
+      const result = (await response.json()) as { error?: string };
       if (!response.ok) {
         throw new Error(result.error ?? "Unable to submit contact form.");
       }
 
       setStatus("success");
       setFormData(initialFormData);
-      setStatusMessage(
-        result.message ?? "Thanks. Your message has been sent successfully.",
-      );
     } catch (error) {
       setStatus("error");
-      setStatusMessage(
+      setErrorMessage(
         error instanceof Error ? error.message : "Something went wrong. Please try again.",
       );
     }
@@ -74,8 +69,6 @@ export default function ContactPage() {
               className="border-b w-full focus:outline-none text-gray-500"
               type="text"
               required
-              minLength={3}
-              maxLength={120}
               value={formData.subject}
               onChange={(event) =>
                 setFormData((prev) => ({ ...prev, subject: event.target.value }))
@@ -91,7 +84,6 @@ export default function ContactPage() {
               className="border-b w-full focus:outline-none text-gray-500"
               type="email"
               required
-              maxLength={254}
               value={formData.email}
               onChange={(event) =>
                 setFormData((prev) => ({ ...prev, email: event.target.value }))
@@ -106,7 +98,6 @@ export default function ContactPage() {
               placeholder="Example: +971552289194"
               className="border-b w-full focus:outline-none text-gray-500"
               type="tel"
-              maxLength={40}
               value={formData.phone}
               onChange={(event) =>
                 setFormData((prev) => ({ ...prev, phone: event.target.value }))
@@ -123,25 +114,9 @@ export default function ContactPage() {
               placeholder="Tell us what you need help with..."
               className="shadow-lg h-40 focus:outline-none p-2"
               required
-              minLength={10}
-              maxLength={4000}
               value={formData.message}
               onChange={(event) =>
                 setFormData((prev) => ({ ...prev, message: event.target.value }))
-              }
-            />
-          </div>
-
-          <div className="hidden" aria-hidden="true">
-            <label htmlFor="website">Website</label>
-            <input
-              id="website"
-              type="text"
-              tabIndex={-1}
-              autoComplete="off"
-              value={formData.website}
-              onChange={(event) =>
-                setFormData((prev) => ({ ...prev, website: event.target.value }))
               }
             />
           </div>
@@ -155,12 +130,14 @@ export default function ContactPage() {
           </button>
 
           {status === "success" && (
-            <p className="mt-4 text-green-700 text-sm">{statusMessage}</p>
+            <p className="mt-4 text-green-700 text-sm">
+              Thanks. Your message has been sent successfully.
+            </p>
           )}
 
           {status === "error" && (
             <p className="mt-4 text-red-700 text-sm">
-              {statusMessage || "We could not send your message. Please try again."}
+              {errorMessage || "We could not send your message. Please try again."}
             </p>
           )}
         </form>
