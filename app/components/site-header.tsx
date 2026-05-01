@@ -41,7 +41,7 @@ export default function SiteHeader() {
           <div className="fixed w-full h-8 lg:px-0 z-[9] top-0 bg-[#333333] pt-1 shadow-lg">
             <div className="container mx-auto px-4">
               <div className="flex justify-between items-center">
-                <p>Meet Yusra</p>
+                <p>NavbarMobile</p>
                 <button
                   type="button"
                   onClick={() => setOpen((prev) => !prev)}
@@ -83,7 +83,7 @@ export default function SiteHeader() {
       <div className="hidden lg:block">
         <div className="flex justify-center">
           <div className="flex flex-col gap-4 w-full">
-            <h4 className="text-2xl text-center">Meet Yusra</h4>
+            <h4 className="text-2xl text-center">Yusra mam-Gogh</h4>
             <div className="flex items-center gap-8 justify-center w-full">
               {navLinks.map((item) => (
                 <div className="relative" key={item.href}>

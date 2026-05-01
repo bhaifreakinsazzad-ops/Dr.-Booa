@@ -30,7 +30,7 @@ function ScrollDownIcon() {
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth={1}
-      className="w-10 h-10 stroke-slate-500 hover:opacity-80 cursor-pointer"
+      className="w-10 h-w-10 stroke-slate-500 hover:opacity-80 cursor-pointer"
     >
       <path
         strokeLinecap="round"
@@ -43,7 +43,7 @@ function ScrollDownIcon() {
 
 function AboutTop() {
   return (
-    <div className="px-4 lg:px-0 mx-auto pt-2">
+    <div className="px-4 lx:px-0 mx-auto pt-2">
       <div className="grid lg:grid-cols-2">
         <div className="w-full pt-[85%] relative">
           <Image
@@ -60,10 +60,7 @@ function AboutTop() {
               Art & Decor consultant
             </p>
             <Link href="/contact">
-              <button
-                type="button"
-                className="w-fit bg-[#333333] pl-4 pr-8 text-white mb-3"
-              >
+              <button className="w-fit bg-[#333333] pl-4 pr-8 text-white mb-3">
                 Hire Me
               </button>
             </Link>
@@ -137,21 +134,21 @@ function Testimonials() {
             Testimonials
           </h2>
           <p className="mb-8 font-light text-gray-500 lg:mb-16">
-            What people say about Meet Yusra
+            Check what fam say &apos;bout YUZI
           </p>
         </div>
         <div className="grid mb-8 lg:mb-12 lg:grid-cols-2">
-          {testimonials.map((item, itemIndex) => (
+          {testimonials.map((item) => (
             <figure
-              key={`${item.title}-${itemIndex}`}
+              key={item.title}
               className="flex flex-col justify-center items-center p-8 text-center bg-gray-50 border-b border-gray-200 md:p-12 lg:border-r"
             >
               <blockquote className="mx-auto mb-8 max-w-2xl text-gray-500">
                 <h3 className="text-lg font-semibold text-gray-900">
                   {item.title}
                 </h3>
-                {item.lines.map((line, lineIndex) => (
-                  <p className="my-4" key={`${item.title}-${lineIndex}`}>
+                {item.lines.map((line) => (
+                  <p className="my-4" key={line}>
                     {line}
                   </p>
                 ))}
